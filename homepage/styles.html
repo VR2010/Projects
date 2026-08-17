@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Text Styles</title>
+</head>
+
+<body class="textstylesbody">
+
+    <header>
+
+        <div class="brand">
+            <a href="index.html" class="backarrow">‹</a>
+
+            <div class="brandlogo">T</div>
+            <div class="brandname">TextLab</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="styles.html" class="active">Text Styles</a>
+            <a href="typingtest.html">Typing Test</a>
+            <a href="hangman.html">Hangman</a>
+        </nav>
+
+    </header>
+
+
+    <main class="stylesmain">
+
+        <section class="stylespanel">
+
+            <h1>Text Styles</h1>
+
+            <p class="paneldescription">
+                Transforms standard keyboard strings into stylized visual
+                assets instantly.
+            </p>
+
+            <label for="text">INPUT TEXT</label>
+
+            <input
+                type="text"
+                id="text"
+                placeholder="Enter Text Here:"
+                autofocus
+            >
+
+
+            <label for="style">SELECT RENDERER</label>
+
+            <select id="style">
+                <option>Options:</option>
+                <option value="style1">Blink</option>
+                <option value="style2">Rainbow Color</option>
+                <option value="style3">Toggle Case</option>
+                <option value="style4">Jumbled</option>
+            </select>
+
+
+        </section>
+
+
+        <section class="previewpanel">
+
+            <div class="previewlabel">
+                PREVIEW CANVAS
+            </div>
+
+            <p id="output">
+                <span id="rainbowtext"></span>
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        let blinkonoff;
+
+
+        function blink()
+        {
+            blinkonoff = setInterval(function(){
+
+                if (document.querySelector("#output").style.visibility == "visible")
+                {
+                    document.querySelector("#output").style.visibility = "hidden";
+                }
+                else
+                {
+                    document.querySelector("#output").style.visibility = "visible";
+                }
+
+            }, 500);
+        }
+
+
+        function rainbowcolor()
+        {
+            document.querySelector("#rainbowtext").style.color = "transparent";
+
+            document.querySelector("#rainbowtext").style.background =
+                "linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet)";
+
+            document.querySelector("#rainbowtext").style.backgroundClip = "text";
+            document.querySelector("#rainbowtext").style.webkitBackgroundClip = "text";
+        }
+
+
+        function togglecase()
+        {
+            let length = document.querySelector("#output").textContent.length;
+            let newtext = "";
+            let temp = document.querySelector("#output").textContent;
+
+            for (let i = 0; i < length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    newtext += temp[i].toLowerCase();
+                }
+                else
+                {
+                    newtext += temp[i].toUpperCase();
+                }
+            }
+
+            document.querySelector("#rainbowtext").textContent = newtext;
+        }
+
+
+        function jumble()
+        {
+            let temp = document.querySelector("#output").textContent;
+            let words = temp.split(" ");
+            let newtext = "";
+
+            for (let i = 0; i < words.length; i++)
+            {
+                let letters = words[i].split("");
+
+                while (letters.length > 0)
+                {
+                    let randomnum = Math.floor(Math.random() * letters.length);
+
+                    newtext += letters[randomnum];
+
+                    letters.splice(randomnum, 1);
+                }
+
+                newtext += " ";
+            }
+
+            document.querySelector("#rainbowtext").textContent = newtext;
+        }
+
+
+        document.querySelector("#style").addEventListener("change", function(){
+
+            document.querySelector("#rainbowtext").textContent =
+                document.querySelector("#text").value;
+
+            clearInterval(blinkonoff);
+
+            document.querySelector("#output").style.visibility = "visible";
+
+            document.querySelector("#rainbowtext").style.color = "white";
+
+            document.querySelector("#rainbowtext").style.background = "none";
+
+            document.querySelector("#rainbowtext").style.backgroundClip = "border-box";
+
+            document.querySelector("#rainbowtext").style.webkitBackgroundClip = "border-box";
+
+
+            if (document.querySelector("#style").value == "style1")
+            {
+                blink();
+            }
+
+            else if (document.querySelector("#style").value == "style2")
+            {
+                rainbowcolor();
+            }
+
+            else if (document.querySelector("#style").value == "style3")
+            {
+                togglecase();
+            }
+
+            else if (document.querySelector("#style").value == "style4")
+            {
+                jumble();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>

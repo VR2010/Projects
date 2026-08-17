@@ -1,0 +1,1096 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #1d1c2b;
+    color: white;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+    height: 58px;
+    padding: 0 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #28263f;
+    border-top: 2px solid #3c3a62;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brandlogo {
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #9890f5;
+    border-radius: 5px;
+
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.brandname {
+    color: #f5f4fa;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.backarrow {
+    margin-right: 3px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 25px;
+}
+
+header nav {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+header nav a {
+    color: #bbb9c8;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+header nav a:hover,
+header nav a.active {
+    color: white;
+}
+
+
+/* =========================================================
+   COMMON
+   ========================================================= */
+
+.paneldescription {
+    margin: 7px 0 20px;
+
+    color: #c5c3cf;
+
+    font-size: 13px;
+    line-height: 1.55;
+}
+
+
+/* =========================================================
+   HOME
+   ========================================================= */
+
+.homebody {
+    min-height: 100vh;
+}
+
+.homecontent {
+    width: 92%;
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.badge {
+    width: fit-content;
+
+    margin: 0 auto 19px;
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    background: #e0e6ff;
+    color: #6872dc;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.homecontent > h1 {
+    margin: 0;
+
+    text-align: center;
+
+    color: #f7f6fb;
+
+    font-size: 49px;
+    line-height: 1.1;
+    font-weight: 800;
+}
+
+.homesubtitle {
+    margin: 20px auto 0;
+
+    color: #c7c5ce;
+
+    font-size: 19px;
+    line-height: 1.6;
+
+    text-align: center;
+}
+
+.homecards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 16px;
+
+    margin-top: 48px;
+}
+
+.homecard {
+    min-height: 190px;
+
+    padding: 19px;
+
+    background: #292840;
+    border-radius: 9px;
+}
+
+.cardicon {
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #e5e9ff;
+    color: #756fea;
+
+    font-size: 21px;
+}
+
+.greenicon {
+    background: #dff7eb;
+    color: #4dbd8b;
+}
+
+.homecard h2 {
+    margin: 12px 0 8px;
+
+    font-size: 22px;
+}
+
+.homecard p {
+    margin: 0;
+
+    color: #c5c3ce;
+
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.cardbutton {
+    height: 27px;
+
+    margin-top: 19px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #38364f;
+    border-radius: 5px;
+
+    color: white;
+    text-decoration: none;
+
+    font-size: 15px;
+}
+
+.cardbutton:hover {
+    background: #303049;
+}
+
+.cardbutton span {
+    margin-left: 6px;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   TEXT STYLES
+   ========================================================= */
+
+.textstylesbody {
+    min-height: 100vh;
+}
+
+.stylesmain {
+    width: 92%;
+    max-width: 1000px;
+
+    margin: 38px auto;
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+
+    gap: 24px;
+}
+
+.stylespanel,
+.previewpanel {
+    background: #292840;
+    border-radius: 10px;
+}
+
+.stylespanel {
+    padding: 22px 20px;
+}
+
+.stylespanel h1 {
+    margin: 0;
+
+    font-size: 30px;
+}
+
+.stylespanel label {
+    display: block;
+
+    margin-bottom: 7px;
+    margin-top: 7px;
+
+    color: #ecebf1;
+
+    font-size: 15px;
+
+}
+
+.textstylesbody #text,
+.textstylesbody #style {
+    width: 100%;
+    height: 34px;
+
+    margin: 0 0 29px;
+    padding: 0 10px;
+
+    background: #25243c;
+
+    border: 1px solid #38364f;
+    border-radius: 6px;
+
+    color: white;
+
+    font-size: 17px;
+
+    outline: none;
+
+}
+
+.textstylesbody #text {
+    border-color: #8baaf2;
+}
+
+.textstylesbody #text::placeholder {
+    color: #c7c5d0;
+}
+
+.textstylesbody #text:focus,
+.textstylesbody #style:focus {
+    border-color: #9bb8f7;
+}
+
+
+.previewpanel {
+    min-height: 285px;
+
+    padding: 18px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.previewlabel {
+    color: #aaa8b7;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.textstylesbody #output {
+    flex: 1;
+
+    margin: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    color: white;
+
+    font-size: 48px;
+    font-weight: bold;
+}
+
+
+/* =========================================================
+   TYPING TEST
+   ========================================================= */
+
+.typingtestbody .typingpanel > label,
+.typingtestbody .elapsedrow label,
+.typingtestbody .progresslabel {
+    font-size: 12px;
+    color: white;
+    font-weight: none;
+}
+
+.typingtestbody {
+    min-height: 100vh;
+}
+
+.typingmain {
+    width: 92%;
+    max-width: 1050px;
+
+    margin: 40px auto;
+
+    display: grid;
+    grid-template-columns: 1.6fr 0.8fr;
+
+    gap: 24px;
+}
+
+.typingpanel,
+.statspanel {
+    background: #292840;
+    border-radius: 10px;
+}
+
+.typingpanel {
+    padding: 22px 20px 20px;
+}
+
+.typingpanel h1 {
+    margin: 0;
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.typingtestbody .paneldescription {
+    margin-bottom: 20px;
+}
+
+.typingtestbody .typingpanel > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #ecebf1;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* TARGET */
+
+.typingtestbody #target {
+    width: 100%;
+    height: 92px;
+
+    margin: 0 0 18px;
+
+    padding: 13px;
+
+    overflow-y: auto;
+
+    background: #25243c;
+
+    border: 1px solid #303049;
+    border-radius: 5px;
+
+    color: #c6c4ce;
+
+    font-size: 15px;
+    line-height: 1.55;
+}
+
+
+/* INPUT */
+
+.typingtestbody #input {
+    width: 100%;
+    height: 35px;
+
+    margin: 0;
+    padding: 0 11px;
+
+    background: #25243c;
+
+    border: 1px solid #8baaf2;
+    border-radius: 6px;
+
+    color: white;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+.typingtestbody #input::placeholder {
+    color: #cac8d2;
+}
+
+
+/* TIME SECTION */
+
+.elapsedrow {
+    width: 100%;
+
+    margin-top: 18px;
+
+    display: flex;
+    align-items: end;
+    gap: 15px;
+}
+
+.elapsedrow > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.elapsedrow label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #e9e8ee;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#timeleft {
+    width: 52px;
+
+    margin: 0;
+
+    color: #8078e9;
+
+    font-size: 15px;
+    text-align: right;
+}
+
+
+/* BOTH BARS */
+
+.timeprogress,
+.progresswrapper {
+    width: 100%;
+}
+
+.timeprogress {
+    height: 5px;
+
+    background: #39384f;
+
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+#timebar {
+    width: 100%;
+    height: 100%;
+
+    background: #9dbaf4;
+
+    transition: width 1s linear;
+}
+
+
+/* PROGRESS LABEL */
+
+.progresslabel {
+    display: block;
+
+    margin-top: 17px;
+    margin-bottom: 7px;
+
+    color: #e9e8ee;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+
+/* PROGRESS BAR */
+
+.typingtestbody #progress {
+    display: block;
+
+    width: 100%;
+    height: 5px;
+
+    margin: 0;
+
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.typingtestbody #progress::-webkit-progress-bar {
+    background: #39384f;
+
+    border-radius: 999px;
+}
+
+.typingtestbody #progress::-webkit-progress-value {
+    background: #9dbaf4;
+
+    border-radius: 999px;
+}
+
+.typingtestbody #progress::-moz-progress-bar {
+    background: #9dbaf4;
+
+    border-radius: 999px;
+}
+
+
+/* BUTTONS */
+
+.typingbuttons {
+    margin-top: 19px;
+
+    display: flex;
+    gap: 10px;
+}
+
+.typingbuttons button {
+    height: 30px;
+
+    padding: 0 14px;
+
+    border-radius: 5px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+.typingtestbody #button {
+    background: transparent;
+
+    border: none;
+
+    color: white;
+}
+
+.typingtestbody #restart {
+    background: #9ebcf6;
+
+    border: none;
+
+    color: #22223b;
+
+    font-weight: bold;
+}
+
+
+/* PERFORMANCE */
+
+.statspanel {
+    padding: 20px;
+}
+
+.statspanel h2 {
+    margin: 0 0 15px;
+
+    font-size: 22px;
+}
+
+.statrow {
+    min-height: 53px;
+
+    padding: 10px 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border-top: 1px solid #37364d;
+}
+
+.statrow div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.statrow strong {
+    color: #ecebf1;
+
+    font-size: 14px;
+}
+
+.statrow span {
+    color: #aaa8b6;
+
+    font-size: 14px;
+}
+
+.statrow p {
+    margin: 0;
+
+    text-align: right;
+
+    color: #f2f1f5;
+
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.accuracyvalue {
+    color: #56be8b !important;
+}
+
+
+
+/* =========================================================
+   HANGMAN
+   ========================================================= */
+
+.hangmanbody {
+    min-height: 100vh;
+}
+
+.hangmanmain {
+    width: 92%;
+    max-width: 1000px;
+
+    margin: 40px auto;
+
+    display: grid;
+    grid-template-columns: 1.55fr 0.8fr;
+
+    gap: 24px;
+}
+
+.hangmanleft,
+.hangmanright {
+    background: #292840;
+    border-radius: 10px;
+}
+
+.hangmanleft {
+    padding: 22px 20px;
+}
+
+.hangmanleft h1 {
+    margin: 0;
+
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.hangmanbody .paneldescription {
+    margin-bottom: 24px;
+}
+
+.hangmanbody #guessword {
+    margin: 25px 0;
+
+    text-align: center;
+
+    color: #efeff4;
+
+    font-size: 35px;
+    font-weight: bold;
+
+    letter-spacing: 9px;
+}
+
+.inputguess {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.hangmanbody #input {
+    width: 130px;
+    height: 35px;
+
+    padding: 0 10px;
+
+    background: #25243c;
+
+    border: 1px solid #39384f;
+    border-radius: 5px;
+
+    color: white;
+
+    font-size: 17px;
+}
+
+.hangmanbody #guessbutton {
+    height: 35px;
+
+    padding: 0 14px;
+
+    background: #9ebcf6;
+
+    border: none;
+    border-radius: 5px;
+
+    color: #22223b;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hangmanbody #wrongguess {
+    margin-top: 18px;
+    padding: 10px;
+
+    background: #25243c;
+
+    border-radius: 5px;
+
+    color: #aaa8b5;
+
+    font-size: 15px;
+}
+
+.hangmanbody #result {
+    margin-top: 15px;
+
+    color: white;
+
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.hangmanbuttons {
+    margin-top: 20px;
+
+    display: flex;
+    gap: 10px;
+}
+
+.hangmanbuttons button {
+    height: 30px;
+
+    padding: 0 13px;
+
+    border: none;
+    border-radius: 5px;
+
+    font-size: 15px;
+}
+
+.hangmanbody #returnbutton {
+    background: transparent;
+
+    color: white;
+}
+
+.hangmanbody #restart {
+    background: #9ebcf6;
+
+    color: #22223b;
+
+    font-weight: bold;
+}
+
+.hangmanright {
+    padding: 20px;
+}
+
+.simulationtop {
+    display: flex;
+    justify-content: space-between;
+
+    color: #cac8d4;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.hangmanscene {
+    height: 275px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hangman {
+    position: relative;
+
+    width: 220px;
+    height: 310px;
+
+    background: transparent;
+}
+
+.simulationdescription {
+    margin: 10 auto;
+
+    max-width: 260px;
+
+    text-align: center;
+
+    color: #aaa8b5;
+
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   HANGMAN DRAWING
+   ========================================================= */
+
+.hangmanbody #head {
+    position: absolute;
+
+    width: 60px;
+    height: 60px;
+
+    border: 5px solid #CC99FF;
+    border-radius: 50%;
+
+    display: none;
+
+    top: 90px;
+    left: 73px;
+}
+
+.hangmanbody #body {
+    position: absolute;
+
+    width: 0;
+    height: 90px;
+
+    border: 2px solid #CC99FF;
+
+    display: none;
+
+    top: 150px;
+    left: 100px;
+}
+
+.hangmanbody #leftarm,
+.hangmanbody #rightarm {
+    position: absolute;
+
+    width: 0;
+    height: 40px;
+
+    border: 2px solid #CC99FF;
+
+    display: none;
+
+    top: 175px;
+    left: 100px;
+
+    transform-origin: top center;
+}
+
+.hangmanbody #leftarm {
+    transform: rotate(35deg);
+}
+
+.hangmanbody #rightarm {
+    transform: rotate(-35deg);
+}
+
+.hangmanbody #leftleg,
+.hangmanbody #rightleg {
+    position: absolute;
+
+    width: 0;
+    height: 25px;
+
+    border: 2px solid #CC99FF;
+
+    display: none;
+
+    top: 240px;
+    left: 100px;
+
+    transform-origin: top center;
+}
+
+.hangmanbody #leftleg {
+    transform: rotate(45deg);
+}
+
+.hangmanbody #rightleg {
+    transform: rotate(-45deg);
+}
+
+.hangmanbody #platform1 {
+    position: absolute;
+
+    height: 240px;
+    width: 5px;
+
+    background: #7770ed;
+
+    top: 50px;
+    left: 36px;
+}
+
+.hangmanbody #platform2 {
+    position: absolute;
+
+    width: 200px;
+    height: 5px;
+
+    background: #7770ed;
+
+    top: 290px;
+    left: 10px;
+}
+
+.hangmanbody #platform3 {
+    position: absolute;
+
+    width: 60px;
+    height: 5px;
+
+    background: #7770ed;
+
+    top: 50px;
+    left: 40px;
+}
+
+.hangmanbody #platform4 {
+    position: absolute;
+
+    width: 5px;
+    height: 40px;
+
+    background: #7770ed;
+
+    top: 50px;
+    left: 100px;
+}
+
+.hangmanbody #lefteye1lose,
+.hangmanbody #lefteye2lose,
+.hangmanbody #righteye1lose,
+.hangmanbody #righteye2lose,
+.hangmanbody #lefteye1win,
+.hangmanbody #lefteye2win,
+.hangmanbody #righteye1win,
+.hangmanbody #righteye2win {
+    position: absolute;
+
+    width: 0;
+
+    display: none;
+
+    border: 2px solid #ff8d99;
+}
+
+.hangmanbody #lefteye1lose,
+.hangmanbody #lefteye2lose,
+.hangmanbody #lefteye1win,
+.hangmanbody #lefteye2win {
+    left: 85px;
+}
+
+.hangmanbody #righteye1lose,
+.hangmanbody #righteye2lose,
+.hangmanbody #righteye1win,
+.hangmanbody #righteye2win {
+    left: 115px;
+}
+
+.hangmanbody #lefteye1lose,
+.hangmanbody #lefteye2lose,
+.hangmanbody #righteye1lose,
+.hangmanbody #righteye2lose,
+.hangmanbody #lefteye1win,
+.hangmanbody #lefteye2win,
+.hangmanbody #righteye1win,
+.hangmanbody #righteye2win {
+    top: 112px;
+}
+
+.hangmanbody #lefteye1win,
+.hangmanbody #lefteye2win,
+.hangmanbody #righteye1win,
+.hangmanbody #righteye2win {
+    border-color: #58c892;
+}
+
+.hangmanbody #lefteye1lose,
+.hangmanbody #righteye2lose,
+.hangmanbody #lefteye1win,
+.hangmanbody #righteye2win {
+    transform: rotate(45deg);
+}
+
+.hangmanbody #lefteye2lose,
+.hangmanbody #righteye1lose,
+.hangmanbody #lefteye2win,
+.hangmanbody #righteye1win {
+    transform: rotate(-45deg);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    header {
+        height: auto;
+        padding: 13px 15px;
+
+        gap: 12px;
+    }
+
+    header nav {
+        gap: 12px;
+    }
+
+    .homecards,
+    .stylesmain,
+    .typingmain,
+    .hangmanmain {
+        grid-template-columns: 1fr;
+    }
+
+    .homecontent > h1 {
+        font-size: 39px;
+    }
+}

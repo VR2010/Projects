@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Hangman</title>
+</head>
+
+<body class="hangmanbody">
+
+    <header>
+
+        <div class="brand">
+            <a href="index.html" class="backarrow">‹</a>
+
+            <div class="brandlogo">T</div>
+            <div class="brandname">TextLab</div>
+        </div>
+
+        <nav>
+            <a href="index.html">Overview</a>
+            <a href="styles.html">Text Styles</a>
+            <a href="typingtest.html">Typing Test</a>
+            <a href="hangman.html" class="active">Hangman</a>
+        </nav>
+
+    </header>
+
+
+    <main class="hangmanmain">
+
+        <section class="hangmanleft">
+
+            <h1>Hangman</h1>
+
+            <p class="paneldescription">
+                Guess the mystery word one letter at a time before the
+                blueprint matches completion.
+            </p>
+
+
+            <p id="guessword"></p>
+
+
+            <div class="inputguess">
+
+                <input
+                    type="text"
+                    id="input"
+                    autofocus
+                    placeholder="Guess a letter"
+                >
+
+                <button id="guessbutton">Guess</button>
+
+            </div>
+
+
+            <p id="wrongguess">Wrong Guesses: </p>
+
+            <div class="hangmanresult">
+                <p id="result"></p>
+            </div>
+
+
+            <div class="hangmanbuttons">
+
+                <a href="index.html">
+                    <button id="returnbutton">
+                        ⌂&nbsp; Back to Home
+                    </button>
+                </a>
+
+                <button id="restart">
+                    ⟳&nbsp; Restart Match
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="hangmanright">
+
+            <div class="simulationtop">
+
+                <span>BLUEPRINT SIMULATION</span>
+
+                <span id="errorcount">0 Errors</span>
+
+            </div>
+
+
+            <div class="hangmanscene">
+
+                <div class="hangman">
+
+                    <div id="head"></div>
+                    <div id="body"></div>
+                    <div id="leftarm"></div>
+                    <div id="rightarm"></div>
+                    <div id="leftleg"></div>
+                    <div id="rightleg"></div>
+
+                    <div id="platform1"></div>
+                    <div id="platform2"></div>
+                    <div id="platform3"></div>
+                    <div id="platform4"></div>
+
+                    <div id="lefteye1lose"></div>
+                    <div id="lefteye2lose"></div>
+                    <div id="righteye1lose"></div>
+                    <div id="righteye2lose"></div>
+
+                    <div id="lefteye1win"></div>
+                    <div id="lefteye2win"></div>
+                    <div id="righteye1win"></div>
+                    <div id="righteye2win"></div>
+
+                </div>
+
+            </div>
+
+
+            <p class="simulationdescription">
+                You have <strong> <span id="attempts">6</span> attempts</strong> remaining.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+        let words = [
+            "apple",
+            "bridge",
+            "castle",
+            "planet",
+            "forest",
+            "silver",
+            "dragon",
+            "rocket",
+            "piano",
+            "cloudy",
+            "thunder",
+            "oceanic",
+            "guitar",
+            "banana",
+            "window",
+            "garden",
+            "rabbit",
+            "coffee",
+            "camera",
+            "island",
+            "summer",
+            "winter",
+            "autumn",
+            "spring",
+            "purple",
+            "orange",
+            "yellow",
+            "violet",
+            "scarlet",
+            "marble",
+            "candle",
+            "mirror",
+            "pencil",
+            "school",
+            "friend",
+            "family",
+            "travel",
+            "flight",
+            "desert",
+            "valley",
+            "mountain",
+            "river",
+            "stream",
+            "flower",
+            "butterfly",
+            "penguin",
+            "elephant",
+            "giraffe",
+            "dolphin",
+            "turtle",
+            "monkey",
+            "tiger",
+            "leopard",
+            "cheetah",
+            "whale",
+            "shark",
+            "falcon",
+            "eagle",
+            "parrot",
+            "pigeon",
+            "wizard",
+            "pirate",
+            "knight",
+            "sword",
+            "shield",
+            "helmet",
+            "treasure",
+            "mystery",
+            "secret",
+            "puzzle",
+            "answer",
+            "shadow",
+            "spirit",
+            "ghosts",
+            "monster",
+            "adventure",
+            "journey",
+            "country",
+            "village",
+            "library",
+            "science",
+            "energy",
+            "galaxy",
+            "universe",
+            "comet",
+            "meteor",
+            "sunrise",
+            "sunset",
+            "rainbow",
+            "lightning",
+            "cactus",
+            "sunlight",
+            "snowflake",
+            "volcano",
+            "meadow",
+            "thistle",
+            "lantern",
+            "harvest",
+            "breeze",
+            "whisper"
+        ];
+
+
+        let gameover = false;
+
+        let randomword =
+            words[Math.floor(Math.random() * words.length)];
+
+
+        document.querySelector("#guessword").textContent =
+            "_ ".repeat(randomword.length);
+
+
+        let displayword =
+            "_ ".repeat(randomword.length).split(" ");
+
+
+        let wrongcount = 0;
+        let wrongletter = "";
+
+
+        document.querySelector("#guessbutton").addEventListener("click", function(){
+
+            if (gameover === false)
+            {
+
+                let letterguess =
+                    document.querySelector("#input").value.toLowerCase();
+
+
+                if (letterguess.length !== 1)
+                {
+                    alert("Please enter only 1 letter!");
+
+                    document.querySelector("#input").value = "";
+
+                    return;
+                }
+
+
+                if (letterguess < "a" || letterguess > "z")
+                {
+                    alert("Please enter letters only!");
+
+                    document.querySelector("#input").value = "";
+
+                    return;
+                }
+
+
+                if (
+                    displayword.includes(letterguess) ||
+                    wrongletter.includes(letterguess)
+                )
+                {
+                    alert("Please enter a unique letter!");
+
+                    document.querySelector("#input").value = "";
+
+                    return;
+                }
+
+
+                if (randomword.includes(letterguess))
+                {
+                    for (let i = 0; i < randomword.length; i++)
+                    {
+                        if (letterguess == randomword[i])
+                        {
+                            displayword[i] = letterguess;
+                        }
+                    }
+                }
+
+                else
+                {
+                    document.querySelector("#wrongguess").textContent +=
+                        letterguess + " ";
+
+                    wrongletter += letterguess;
+
+                    wrongcount++;
+
+                    document.querySelector("#errorcount").textContent =
+                        wrongcount + " Errors";
+
+
+                    if (wrongcount >= 1)
+                        document.querySelector("#head").style.display = "block";
+
+                    if (wrongcount >= 2)
+                        document.querySelector("#body").style.display = "block";
+
+                    if (wrongcount >= 3)
+                        document.querySelector("#leftarm").style.display = "block";
+
+                    if (wrongcount >= 4)
+                        document.querySelector("#rightarm").style.display = "block";
+
+                    if (wrongcount >= 5)
+                        document.querySelector("#leftleg").style.display = "block";
+
+                    if (wrongcount >= 6)
+                        document.querySelector("#rightleg").style.display = "block";
+
+                    if (wrongcount >= 0)
+                    {
+                        document.querySelector("#attempts").textContent = "6";
+                        if (wrongcount >= 1)
+                        {
+                            document.querySelector("#attempts").textContent = "5";
+                            if (wrongcount >= 2)
+                            {
+                                document.querySelector("#attempts").textContent = "4";
+                                if (wrongcount >= 3)
+                                {
+                                    document.querySelector("#attempts").textContent = "3";
+                                    if (wrongcount >= 4)
+                                    {
+                                        document.querySelector("#attempts").textContent = "2";
+                                        if (wrongcount >= 5)
+                                        {
+                                            document.querySelector("#attempts").textContent = "1";
+                                            if (wrongcount >= 6)
+                                            {
+                                                document.querySelector("#attempts").textContent = "0";
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+                if (wrongcount >= 6)
+                {
+                    document.querySelector("#result").textContent =
+                        "You Lose! The word was " + randomword + ".";
+
+                    gameover = true;
+
+                    document.querySelector("#input").disabled = true;
+                    document.querySelector("#guessbutton").disabled = true;
+
+                    document.querySelector("#lefteye1lose").style.display = "block";
+                    document.querySelector("#righteye1lose").style.display = "block";
+                    document.querySelector("#lefteye2lose").style.display = "block";
+                    document.querySelector("#righteye2lose").style.display = "block";
+                }
+
+
+                document.querySelector("#guessword").textContent =
+                    displayword.join(" ");
+
+
+                if (!document.querySelector("#guessword").textContent.includes("_"))
+                {
+                    document.querySelector("#result").textContent =
+                        "You Win!";
+
+                    gameover = true;
+
+                    if (wrongcount != 0)
+                    {
+                        document.querySelector("#input").disabled = true;
+                        document.querySelector("#guessbutton").disabled = true;
+
+                        document.querySelector("#lefteye1win").style.display = "block";
+                        document.querySelector("#righteye1win").style.display = "block";
+                        document.querySelector("#lefteye2win").style.display = "block";
+                        document.querySelector("#righteye2win").style.display = "block";
+                    }
+                }
+
+
+                document.querySelector("#input").value = "";
+
+            }
+
+        });
+
+
+        document.querySelector("#restart").addEventListener("click", function(){
+
+            document.querySelector("#input").disabled = false;
+            document.querySelector("#guessbutton").disabled = false;
+
+            document.querySelector("#wrongguess").textContent =
+                "Wrong Guesses: ";
+
+            document.querySelector("#result").textContent = "";
+
+            document.querySelector("#errorcount").textContent =
+                "0 Errors";
+
+
+            gameover = false;
+            wrongcount = 0;
+            wrongletter = "";
+
+
+            randomword =
+                words[Math.floor(Math.random() * words.length)];
+
+
+            displayword =
+                "_ ".repeat(randomword.length).split(" ");
+
+
+            document.querySelector("#guessword").textContent =
+                displayword.join(" ");
+
+
+            document.querySelector("#input").value = "";
+
+            document.querySelector("#input").focus();
+
+
+            document.querySelector("#head").style.display = "none";
+            document.querySelector("#body").style.display = "none";
+            document.querySelector("#leftarm").style.display = "none";
+            document.querySelector("#rightarm").style.display = "none";
+            document.querySelector("#leftleg").style.display = "none";
+            document.querySelector("#rightleg").style.display = "none";
+
+            document.querySelector("#lefteye1lose").style.display = "none";
+            document.querySelector("#lefteye2lose").style.display = "none";
+            document.querySelector("#righteye1lose").style.display = "none";
+            document.querySelector("#righteye2lose").style.display = "none";
+
+            document.querySelector("#lefteye1win").style.display = "none";
+            document.querySelector("#lefteye2win").style.display = "none";
+            document.querySelector("#righteye1win").style.display = "none";
+            document.querySelector("#righteye2win").style.display = "none";
+
+        });
+
+    </script>
+
+</body>
+</html>

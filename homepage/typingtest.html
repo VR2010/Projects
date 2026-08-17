@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Typing Test</title>
+
+</head>
+
+
+<body class="typingtestbody">
+
+
+    <header>
+
+        <div class="brand">
+
+            <a href="index.html" class="backarrow">‹</a>
+
+            <div class="brandlogo">T</div>
+
+            <div class="brandname">
+                TextLab
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <a href="index.html">
+                Overview
+            </a>
+
+            <a href="styles.html">
+                Text Styles
+            </a>
+
+            <a href="typingtest.html" class="active">
+                Typing Test
+            </a>
+
+            <a href="hangman.html">
+                Hangman
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="typingmain">
+
+
+        <section class="typingpanel">
+
+
+            <h1>
+                Typing Test
+            </h1>
+
+
+            <p class="paneldescription">
+                Evaluate typing speed, accuracy, and more.
+            </p>
+
+
+            <label>
+                TARGET PARAGRAPH
+            </label>
+
+
+            <div id="target">
+
+                The city was unusually quiet that evening, despite the streets
+                normally being filled with traffic, music, and people rushing
+                home from work. As the sun disappeared behind the buildings,
+                the sky turned a deep orange before slowly becoming dark.
+                A cool breeze moved through the streets, carrying the smell
+                of rain. Somewhere nearby, a dog barked, a car alarm went off,
+                and someone shouted from an open window. I kept walking,
+                wondering whether the rain would arrive before I reached home.
+                Suddenly, lightning flashed across the sky, followed by a loud
+                crack of thunder. Within seconds, heavy drops began falling,
+                and everyone around me started searching for shelter. I ran
+                toward a small cafe on the corner and pushed open the door
+                just before the rain became a storm. Inside, warm lights
+                filled the room, soft music played in the background, and
+                people quietly watched the weather through the windows.
+                For a moment, everything felt strangely peaceful.
+
+            </div>
+
+
+            <label>
+                YOUR INPUT
+            </label>
+
+
+            <input
+                type="text"
+                id="input"
+                autofocus
+                placeholder="Start typing when ready..."
+            >
+
+
+            <div class="elapsedrow">
+
+                <div>
+
+                    <label>
+                        ELAPSED TIME
+                    </label>
+
+                    <div class="timeprogress">
+
+                        <div id="timebar"></div>
+
+                    </div>
+
+                </div>
+
+
+                <p id="timeleft">
+                    60s / 60s
+                </p>
+
+            </div>
+
+
+            <div class="progresswrapper">
+
+                <label class="progresslabel">
+                    PROGRESS
+                </label>
+
+                <progress
+                    id="progress"
+                    value="0"
+                    max="100">
+                </progress>
+
+            </div>
+
+
+            <div class="typingbuttons">
+
+                <a href="index.html">
+
+                    <button id="button">
+                        ⌂&nbsp; Back to Home
+                    </button>
+
+                </a>
+
+
+                <button id="restart">
+                    ⟳&nbsp; Restart Diagnostics
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+        <section class="statspanel">
+
+
+            <h2>
+                Performance Stats
+            </h2>
+
+
+            <div class="statrow">
+
+                <div>
+                    <strong>SPEED</strong>
+                    <span>Words per minute</span>
+                </div>
+
+                <p id="speed">—</p>
+
+            </div>
+
+
+            <div class="statrow">
+
+                <div>
+                    <strong>CORRECT WORDS</strong>
+                    <span>Typed correctly</span>
+                </div>
+
+                <p id="correctwords">—</p>
+
+            </div>
+
+
+            <div class="statrow">
+
+                <div>
+                    <strong>INCORRECT WORDS</strong>
+                    <span>Typed incorrectly</span>
+                </div>
+
+                <p id="incorrectwords">—</p>
+
+            </div>
+
+
+            <div class="statrow">
+
+                <div>
+                    <strong>ACCURACY</strong>
+                    <span>Overall performance</span>
+                </div>
+
+                <p id="accuracy" class="accuracyvalue">—</p>
+
+            </div>
+
+
+            <div class="statrow">
+
+                <div>
+                    <strong>TOTAL CHARACTERS</strong>
+                    <span>Keystroke count</span>
+                </div>
+
+                <p id="chartyped">—</p>
+
+            </div>
+
+
+            <div class="statrow">
+
+                <div>
+                    <strong>LONGEST CORRECT WORD</strong>
+                    <span>Spelling complexity</span>
+                </div>
+
+                <p id="longest">—</p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <script>
+
+        let started = false;
+
+        let countdown;
+
+        let testtimer;
+
+
+        document.querySelector("#input").addEventListener("keyup", function(){
+
+            progress();
+
+
+            if (started == false)
+            {
+
+                started = true;
+
+                timer();
+
+
+                testtimer = setTimeout(function() {
+
+                    document.querySelector("#input").disabled = true;
+
+
+                    let input =
+                        document.querySelector("#input").value.trim();
+
+
+                    let target =
+                        document.querySelector("#target").textContent.trim();
+
+
+                    let correct = 0;
+
+                    let incorrect = 0;
+
+                    let chartyped =
+                        input.split("").length;
+
+                    let longest = "";
+
+
+                    let targetwords =
+                        target.split(/\s+/);
+
+
+                    let inputwords =
+                        input.split(/\s+/);
+
+                    for (
+                        let i = 0;
+                        i < inputwords.length &&
+                        i < targetwords.length;
+                        i++
+                    )
+                    {
+
+                        if (targetwords[i] == inputwords[i])
+                        {
+
+                            correct++;
+
+
+                            if (inputwords[i].length > longest.length)
+                            {
+                                longest = inputwords[i];
+                            }
+
+                        }
+
+                        else
+                        {
+                            incorrect++;
+                        }
+
+                    }
+
+
+                    document.querySelector("#chartyped").textContent =
+                        chartyped;
+
+
+                    document.querySelector("#speed").textContent =
+                        correct + " WPM";
+
+
+                    document.querySelector("#correctwords").textContent =
+                        correct;
+
+
+                    document.querySelector("#incorrectwords").textContent =
+                        incorrect;
+
+
+                    if (correct + incorrect > 0)
+                    {
+                        document.querySelector("#accuracy").textContent =
+                            (correct / (correct + incorrect) * 100)
+                            .toFixed(2) + "%";
+                    }
+                    else
+                    {
+                        document.querySelector("#accuracy").textContent =
+                            "0%";
+                    }
+
+
+                    document.querySelector("#longest").textContent =
+                        longest;
+
+
+                }, 60000);
+
+            }
+
+        });
+
+
+        document.querySelector("#restart").addEventListener("click", function(){
+
+            started = false;
+
+            clearInterval(countdown);
+
+            clearTimeout(testtimer);
+
+
+            document.querySelector("#input").disabled = false;
+
+            document.querySelector("#input").value = "";
+
+
+            document.querySelector("#chartyped").textContent =
+                "—";
+
+            document.querySelector("#speed").textContent =
+                "—";
+
+            document.querySelector("#correctwords").textContent =
+                "—";
+
+            document.querySelector("#incorrectwords").textContent =
+                "—";
+
+            document.querySelector("#accuracy").textContent =
+                "—";
+
+            document.querySelector("#longest").textContent =
+                "—";
+
+
+            document.querySelector("#progress").value =
+                0;
+
+
+            document.querySelector("#timeleft").textContent =
+                "60s / 60s";
+
+
+            document.querySelector("#timebar").style.width =
+                "100%";
+
+
+            document.querySelector("#target").scrollTop =
+                0;
+
+
+            document.querySelector("#input").focus();
+
+        });
+
+
+        document.querySelector("#input").addEventListener(
+            "paste",
+            function(event)
+            {
+                event.preventDefault();
+            }
+        );
+
+
+        document.querySelector("#input").addEventListener(
+            "copy",
+            function(event)
+            {
+                event.preventDefault();
+            }
+        );
+
+
+        document.querySelector("#input").addEventListener(
+            "cut",
+            function(event)
+            {
+                event.preventDefault();
+            }
+        );
+
+
+        function timer()
+        {
+
+            document.querySelector("#timeleft").textContent =
+                "60s / 60s";
+
+
+            document.querySelector("#timebar").style.width =
+                "100%";
+
+
+            let time = 60;
+
+
+            countdown = setInterval(function(){
+
+                time--;
+
+
+                document.querySelector("#timeleft").textContent =
+                    time + "s / 60s";
+
+
+                document.querySelector("#timebar").style.width =
+                    (time / 60 * 100) + "%";
+
+
+                if (time <= 0)
+                {
+                    clearInterval(countdown);
+                }
+
+            }, 1000);
+
+        }
+
+
+        function progress()
+        {
+
+            let typed =
+                document.querySelector("#input").value.length;
+
+
+            let total =
+                document.querySelector("#target").textContent.length;
+
+
+            document.querySelector("#progress").value =
+                (typed / total) * 100;
+
+
+            document.querySelector("#target").scrollTop =
+                (typed / total) * 125;
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
