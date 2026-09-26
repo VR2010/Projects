@@ -1,0 +1,475 @@
+:root {
+    color-scheme: light dark;
+
+    --bg: #0f171b;
+    --surface: #18242b;
+    --surface-2: #1f343b;
+    --surface-3: #172228;
+
+    --text: #e8eeee;
+
+    /* Slightly brighter secondary text */
+    --muted: #7f899f;
+
+    --teal: #5fa79f;
+    --teal-bright: #2ac3ad;
+    --teal-dark: #163d3a;
+
+    --coral: #a87563;
+    --coral-bg: #39231e;
+
+    --border: #2c4048;
+
+    --shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 14px 35px rgba(0, 0, 0, 0.32);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    color-scheme: light dark;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background: var(--bg);
+    color: var(--text);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 36px 20px;
+}
+
+h1 {
+    margin: 0 0 18px;
+
+    font-size: 34px;
+    font-weight: 700;
+
+    text-align: center;
+    letter-spacing: -0.8px;
+}
+
+
+/* Main navigation */
+
+.topbuttons {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 24px;
+}
+
+.topbuttons a,
+#restartbutton {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 32px;
+
+    padding: 0 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #7f899f;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    box-shadow: none;
+
+    transition: 0.2s ease;
+}
+
+.topbuttons a:hover,
+#restartbutton:hover {
+    color: var(--text);
+
+    border-color: var(--teal);
+
+    background: rgba(95, 167, 159, 0.05);
+
+    transform: none;
+}
+
+
+/* Main game */
+
+.container {
+    width: min(1200px, 100%);
+
+    display: flex;
+    gap: 35px;
+
+    align-items: flex-start;
+}
+
+.left {
+    width: 420px;
+    flex-shrink: 0;
+
+    background: var(--surface);
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+}
+
+.right {
+    display: none;
+}
+
+
+/* Word */
+
+#guessword {
+    min-height: 71px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 13px;
+    padding: 16px;
+
+    background: var(--surface-2);
+
+    border-radius: 9px;
+
+    color: var(--teal);
+
+    font-size: 25px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-align: center;
+}
+
+
+/* Input */
+
+#input {
+    width: 100%;
+    height: 35px;
+
+    border: 1px solid var(--teal);
+    border-radius: 8px;
+
+    background: transparent;
+    color: var(--text);
+
+    text-align: center;
+
+    font-size: 13px;
+
+    outline: none;
+
+    margin-bottom: 13px;
+}
+
+#input::placeholder {
+    color: #858da5;
+}
+
+#input:focus {
+    box-shadow: 0 0 0 2px rgba(95, 167, 159, 0.15);
+}
+
+
+/* Guess button */
+
+#guessbutton {
+    width: 100%;
+    height: 32px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: var(--teal-bright);
+    color: #14312e;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+
+    margin-bottom: 12px;
+}
+
+#guessbutton:hover {
+    filter: brightness(1.08);
+}
+
+#guessbutton:disabled {
+    cursor: default;
+    opacity: 0.45;
+}
+
+
+/* Wrong guesses */
+
+#wrongguess {
+    min-height: 29px;
+
+    display: flex;
+    align-items: center;
+
+    background: var(--coral-bg);
+    color: #b18474;
+
+    border-radius: 9px;
+
+    padding: 7px 10px;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+
+    margin-bottom: 13px;
+}
+
+
+/* Description */
+
+#description {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+
+    padding-top: 12px;
+
+    color: #7f899f;
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* Attempts */
+
+#attempts {
+    color: #8991a8;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: left;
+    line-height: 1.4;
+
+    margin-bottom: 15px;
+}
+
+
+/* Result */
+
+#result {
+    width: min(1200px, 100%);
+
+    min-height: 43px;
+
+    background: #1a2830;
+
+    border-radius: 13px;
+
+    box-shadow: var(--shadow);
+
+    margin-top: 15px;
+    padding: 13px 16px;
+
+    display: flex;
+    align-items: center;
+
+    color: var(--text);
+
+    font-size: 12px;
+}
+
+
+/* Restart */
+
+#restartbutton {
+    margin-top: 0;
+}
+
+
+/* How To Play page */
+
+body > p,
+body > ol {
+    width: min(590px, 100%);
+}
+
+body > p {
+    color: #7f899f;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+body > ol {
+    background: var(--surface);
+
+    padding: 24px 30px 24px 46px;
+
+    border-radius: 14px;
+
+    box-shadow: var(--shadow);
+
+    color: var(--text);
+
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+body > ol > li {
+    margin-bottom: 8px;
+}
+
+body > ol ol {
+    margin-top: 5px;
+
+    color: #7f899f;
+}
+
+
+/* Back to Game */
+
+#backbutton {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    height: 32px;
+
+    padding: 0 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 8px;
+
+    background: transparent;
+    color: #7f899f;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#backbutton:hover {
+    color: var(--text);
+
+    border-color: var(--teal);
+
+    background: rgba(95, 167, 159, 0.05);
+}
+
+#backbutton:active {
+    transform: translateY(1px);
+}
+
+
+/* Engineering Bridge */
+
+.bridgehangman {
+    flex: 1;
+    min-width: 0;
+
+    margin: 0;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.bridgehangman svg {
+    display: block;
+
+    width: 100%;
+    max-width: 760px;
+    height: auto;
+
+    color: var(--teal-bright);
+
+    filter: drop-shadow(
+        0 0 4px rgba(42, 195, 173, 0.2)
+    );
+}
+
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 28px 14px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .left {
+        width: 100%;
+    }
+
+    #attempts {
+        text-align: left;
+    }
+
+    #guessword {
+        font-size: 21px;
+    }
+
+    .bridgehangman {
+        width: 100%;
+    }
+
+    .bridgehangman svg {
+        width: 100%;
+        max-width: 760px;
+    }
+}
